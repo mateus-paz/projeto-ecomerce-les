@@ -109,7 +109,7 @@ public class NotificacaoDAO implements IDAO {
             ResultSet rs = pst.executeQuery();
 
             while(rs.next()) {
-                Notificacao not = new Notificacao(rs.getString("ntf_mensagem"), rs.getBoolean("ntf_isLida") ,usuario);
+                Notificacao not = new Notificacao(rs.getString("ntf_mensagem"), usuario);
                 
                 not.setId(rs.getInt("ntf_id"));
                 not.setDtCadastro(rs.getDate("ntf_data_cadastro").toLocalDate());

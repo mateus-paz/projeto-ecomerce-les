@@ -1,21 +1,18 @@
 package dominio.cliente;
 
 import dominio.EntidadeDominio;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-public class Pais extends EntidadeDominio{
-	private String nome;
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class Pais extends EntidadeDominio {
+    private String nome;
 
-	public Pais(String nome) {
-		super();
-		this.nome = nome;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	
 }

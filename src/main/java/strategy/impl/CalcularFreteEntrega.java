@@ -13,16 +13,17 @@ public class CalcularFreteEntrega extends AbstractValidador {
     @Override
     public String processar(EntidadeDominio entidade) {
         EnderecoEntrega endereco = (EnderecoEntrega) entidade;
-        
-        Frete frete = new Frete(endereco);
+
+        Frete frete = Frete.builder()
+                .endereco(endereco).build();
 //        
 //        calcularPrazoValor(frete);
 //        
-        
+
         frete.setValor(new BigDecimal("21.10"));
         frete.setPrazo(2);
         endereco.setFrete(frete);
-        
+
         return null;
     }
 //
@@ -125,5 +126,5 @@ public class CalcularFreteEntrega extends AbstractValidador {
 //        }
 //
 //    } 
-    
+
 }

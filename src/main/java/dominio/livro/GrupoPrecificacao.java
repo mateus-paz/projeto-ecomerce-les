@@ -1,29 +1,14 @@
 package dominio.livro;
 
-public enum GrupoPrecificacao {
-	Grupo1, Grupo2, Grupo3;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-	public static GrupoPrecificacao getValue(int i) {
-		if(i == 1) {
-			return Grupo1;
-		}else if(i ==2) {
-			return Grupo2;
-		}else if(i ==3) {
-			return Grupo3;
-		}
-		
-		return null;
-	}
-	
-	public static int getNumber(GrupoPrecificacao g) {
-		if(g == Grupo1) {
-			return 1;
-		}else if(g == Grupo2) {
-			return 2;
-		}else if(g == Grupo3) {
-			return 3;
-		}
-		
-		return -1;
-	}
+@Getter
+@AllArgsConstructor
+public enum GrupoPrecificacao {
+    Grupo1("Grupo 1", 1), Grupo2("Grupo 2", 2), Grupo3("Grupo 3", 3);
+
+    private String descricao;
+    private int valor;
+
 }

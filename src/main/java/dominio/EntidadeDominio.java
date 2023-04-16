@@ -2,21 +2,17 @@ package dominio;
 
 import java.time.LocalDate;
 
-public class EntidadeDominio {
-	protected int id;
-	private LocalDate dtCadastro;
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
-	public LocalDate getDtCadastro() {
-		return dtCadastro;
-	}
-	public void setDtCadastro(LocalDate dtCadastro) {
-		this.dtCadastro = dtCadastro;
-	}
-	
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+public abstract class EntidadeDominio {
+    protected int id;
+    private LocalDate dtCadastro;
+
 }

@@ -1,44 +1,21 @@
 package dominio.livro;
 
 import dominio.EntidadeDominio;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Dimensao extends EntidadeDominio {
-	private double altura;
-	private double largura;
-	private double peso; 
-	private double profundidade;
-	
-	public Dimensao(double altura, double largura, double profundidade , double peso) {
-		super();
-		this.altura = altura;
-		this.largura = largura;
-		this.peso = peso;
-		this.profundidade = profundidade;
-	}
-	public double getAltura() {
-		return altura;
-	}
-	public void setAltura(double altura) {
-		this.altura = altura;
-	}
-	public double getLargura() {
-		return largura;
-	}
-	public void setLargura(double largura) {
-		this.largura = largura;
-	}
-	public double getPeso() {
-		return peso;
-	}
-	public void setPeso(double peso) {
-		this.peso = peso;
-	}
-	public double getProfundidade() {
-		return profundidade;
-	}
-	public void setProfundidade(double profundidade) {
-		this.profundidade = profundidade;
-	}
+    private double altura;
+    private double largura;
+    private double peso;
+    private double profundidade;
 
 }
-

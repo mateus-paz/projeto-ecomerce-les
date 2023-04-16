@@ -2,47 +2,21 @@ package dominio.venda;
 
 import java.math.BigDecimal;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Frete {
-    private int prazo = 0;
-    private BigDecimal valor = new BigDecimal(0);
-    
+    private int prazo;
+    private BigDecimal valor;
+
     private EnderecoEntrega endereco;
-   
-    public Frete(int prazo, BigDecimal valor) {
-        super();
-        this.prazo = prazo;
-        this.valor = valor;
-    }
-
-    public Frete(EnderecoEntrega endereco) {
-        super();
-        this.endereco = endereco;
-    }
-
-    public int getPrazo() {
-        return prazo;
-    }
-
-    public void setPrazo(int prazo) {
-        this.prazo = prazo;
-    }
-
-    public BigDecimal getValor() {
-       
-        return valor;
-    }
-
-    public void setValor(BigDecimal valor) {
-        this.valor = valor;
-    }
-
-    public EnderecoEntrega getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(EnderecoEntrega endereco) {
-        this.endereco = endereco;
-    }
 
 }

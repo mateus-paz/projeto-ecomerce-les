@@ -2,49 +2,21 @@ package dominio.venda;
 
 import dominio.EntidadeDominio;
 import dominio.cliente.Endereco;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class EnderecoEntrega extends EntidadeDominio {
-    private boolean isSalvar;
-    
+    private boolean salvar;
+
     private Endereco endereco;
     private Frete frete;
-    
-    public EnderecoEntrega() {}
-        
-    public EnderecoEntrega(Endereco endereco, Frete frete) {
-        super();
-        this.frete = frete;
-        this.endereco = endereco;
-        this.setSalvar(false);
-    }
-    
-    public EnderecoEntrega(Endereco endereco) {
-        super();
-        this.endereco = endereco;
-        this.setSalvar(false);
-    }
-    
-    public Endereco getEndereco() {
-        return endereco;
-    }
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-    
-    public boolean isSalvar() {
-        return isSalvar;
-    }
 
-    public void setSalvar(boolean isSalvar) {
-        this.isSalvar = isSalvar;
-    }
-
-    public void setFrete(Frete frete) {
-        this.frete = frete;
-    }
-
-    public Frete getFrete() {
-        return frete;
-    }
-     
 }

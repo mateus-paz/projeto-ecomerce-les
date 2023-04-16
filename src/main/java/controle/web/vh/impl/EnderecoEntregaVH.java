@@ -12,35 +12,32 @@ public class EnderecoEntregaVH implements IViewHelper {
     @Override
     public EntidadeDominio getEntidade(HttpServletRequest request) {
         EnderecoEntrega end = null;
-        
+
         String operacao = request.getParameter("operacao");
         end = (EnderecoEntrega) request.getSession().getAttribute("enderecoSelecionado");
-        
-        if(end == null)
+
+        if (end == null)
             end = new EnderecoEntrega();
-        
-        if(operacao != null)
-            if(operacao.equals("Remover")) {
+
+        if (operacao != null)
+            if (operacao.equals("Remover")) {
                 end = (EnderecoEntrega) request.getSession().getAttribute("enderecoSelecionado");
-               
-            } else if(operacao.equals("Salvar") || operacao.equals("Selecionar")) {
-                
+
+            } else if (operacao.equals("Salvar") || operacao.equals("Selecionar")) {
+
                 EnderecoVH endVh = new EnderecoVH();
                 Endereco endereco = (Endereco) endVh.getEntidade(request);
-                
-//                CarrinhoVH cartVh = new CarrinhoVH();
-//                Carrinho carrinho = (Carrinho) cartVh.getEntidade(request);
-//                List<ItemCarrinho> itens = carrinho.getItens();
-//                
-                end = new EnderecoEntrega(endereco);
-                
+
+                end = EnderecoEntrega.builder()
+                        .endereco(endereco).build();
+
                 String isSalvar = request.getParameter("swtSalvarEndereco");
-             
-                if(isSalvar != null) {
+
+                if (isSalvar != null) {
                     end.setSalvar(true);
                 }
             }
-        
+
         return end;
     }
 

@@ -28,7 +28,10 @@ public class ItemCarrinhoVH implements IViewHelper {
             if(!txtQnt.equals("") && !txtQnt.equals("0"))
                 qnt = Integer.valueOf(txtQnt);  
                         
-            item = new ItemCarrinho(itEstoque.getLivro(), qnt, carrinho);
+            item = new ItemCarrinho(carrinho);
+            
+            item.setLivro(itEstoque.getLivro());
+            item.setQuantidade(qnt);
             
             item.setValorVenda(itEstoque.getValorVenda());
             
@@ -53,8 +56,12 @@ public class ItemCarrinhoVH implements IViewHelper {
                     
             for(ItemCarrinho it : carrinho.getItens())
                 if(it.getId() == idItem) {
-                    item = new ItemCarrinho(it.getLivro(), qnt);
+                    item = new ItemCarrinho();
+                    
+                    item.setLivro(it.getLivro());
+                    item.setQuantidade(qnt);
                     item.setId(idItem);
+                    
                     break;
                 }    
             

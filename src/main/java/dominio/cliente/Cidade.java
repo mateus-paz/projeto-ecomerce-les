@@ -1,27 +1,19 @@
 package dominio.cliente;
 
 import dominio.EntidadeDominio;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Cidade extends EntidadeDominio {
-	private String nome;
-	private Estado estado;
-	
-	public Cidade(String nome, Estado estado) {
-		super();
-		this.nome = nome;
-		this.estado = estado;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public Estado getEstado() {
-		return estado;
-	}
-	public void setEstado(Estado estado) {
-		this.estado = estado;
-	}
-	
+    private String nome;
+    private Estado estado;
+
 }

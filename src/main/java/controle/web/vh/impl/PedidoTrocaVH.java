@@ -20,91 +20,98 @@ public class PedidoTrocaVH implements IViewHelper {
     @Override
     public EntidadeDominio getEntidade(HttpServletRequest request) {
         PedidoTroca pedidoTroca = new PedidoTroca();
-        
+
         String operacao = request.getParameter("operacao");
-        
-        if(operacao != null) {
-            if(operacao.equals("Alterar")) {
+
+        if (operacao != null) {
+            if (operacao.equals("Alterar")) {
                 pedidoTroca = (PedidoTroca) request.getSession().getAttribute("pedidoTroca");
 
                 int valorStatus = Integer.valueOf(request.getParameter("txtValStatus"));
-                
-                if(valorStatus == 4) {
+
+                if (valorStatus == 4) {
                     pedidoTroca.getPedido().setStatus(StatusPedido.TROCA);
-                }else if (valorStatus == 5) {
+                } else if (valorStatus == 5) {
                     pedidoTroca.getPedido().setStatus(StatusPedido.AUTORIZADA);
-                }else if (valorStatus == 6) {
+                } else if (valorStatus == 6) {
                     pedidoTroca.getPedido().setStatus(StatusPedido.RECUSADA);
-                }else if (valorStatus == 7) {
+                } else if (valorStatus == 7) {
                     pedidoTroca.getPedido().setStatus(StatusPedido.TROCADO);
                 }
-                
-            } else if(operacao.equals("ConsultarPorId")) {
+
+            } else if (operacao.equals("ConsultarPorId")) {
 
                 String txtIdPedido = request.getParameter("idPedido");
                 int idPedido = Integer.valueOf(txtIdPedido);
-                
+
                 pedidoTroca.setId(idPedido);
-                
-            } else if(operacao.equals("Consultar")) {
+
+            } else if (operacao.equals("Consultar")) {
 
                 Usuario usuario = (Usuario) request.getSession().getAttribute("usuario");
-                
-                if(!usuario.isAdmin()){
-                    
+
+                if (!usuario.isAdmin()) {
+
                     Cliente cliente = usuario.getCliente();
                     Pedido pedido = new Pedido();
-                    
+
                     pedido.setCliente(cliente);
-                    
+
                     pedidoTroca.setPedido(pedido);
                 }
-                
-                
-            } else if(operacao.equals("Salvar")) {
+
+            } else if (operacao.equals("Salvar")) {
                 Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
                 pedido.setStatus(StatusPedido.TROCA);
-                
+
                 List<ItemTroca> itens = new ArrayList<>();
-                
+
                 String idItem = null;
                 int quantidade = 0;
                 int i = 1;
-                
-                for(ItemPedido item : pedido.getItens()) {
-                    idItem = request.getParameter("idItem"+i);
-                    
-                    if(idItem == null) {
+
+                for (ItemPedido item : pedido.getItens()) {
+                    idItem = request.getParameter("idItem" + i);
+
+                    if (idItem == null) {
                         continue;
-                    } else if(item.getId() == Integer.valueOf(idItem)) {
-                        
-                        quantidade = Integer.valueOf(request.getParameter("txtQnt"+item.getId()));
-                        
-                        if(quantidade != 0)
-                            itens.add( new ItemTroca(item.getLivro(), quantidade, item.getValorVenda()));
-                        
+                    } else if (item.getId() == Integer.valueOf(idItem)) {
+
+                        quantidade = Integer.valueOf(request.getParameter("txtQnt" + item.getId()));
+
+                        if (quantidade != 0) {
+                            ItemTroca itemTroca = new ItemTroca();
+
+                            itemTroca.setLivro(item.getLivro());
+                            itemTroca.setQuantidade(quantidade);
+                            itemTroca.setValorVenda(item.getValorVenda());
+
+                            itens.add(itemTroca);
+                        }
                         quantidade = 0;
                         idItem = null;
                     }
-                    
+
                     i++;
                 }
-                
-                pedidoTroca = new PedidoTroca(pedido, itens);
-                
-            } else if(operacao.equals("ConsultarPorPedido")) {
+
+                pedidoTroca = PedidoTroca.builder()
+                        .pedido(pedido)
+                        .itens(itens).build();
+
+            } else if (operacao.equals("ConsultarPorPedido")) {
                 Pedido pedido = (Pedido) request.getSession().getAttribute("pedido");
                 pedidoTroca.setPedido(pedido);
-                
+
             }
         }
-        
+
         return pedidoTroca;
     }
 
     @Override
     public void setEntidade(HttpServletResponse response, HttpServletRequest request, Object msg) {
-        
+
         request.getSession().setAttribute("pedidoTroca", (PedidoTroca) msg);
 
     }
