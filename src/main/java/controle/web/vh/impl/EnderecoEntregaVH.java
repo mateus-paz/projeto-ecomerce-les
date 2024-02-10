@@ -1,11 +1,12 @@
 package controle.web.vh.impl;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import controle.web.vh.IViewHelper;
 import dominio.EntidadeDominio;
 import dominio.cliente.Endereco;
 import dominio.venda.EnderecoEntrega;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 public class EnderecoEntregaVH implements IViewHelper {
 

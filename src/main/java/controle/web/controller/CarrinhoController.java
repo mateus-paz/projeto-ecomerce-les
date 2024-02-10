@@ -2,6 +2,13 @@ package controle.web.controller;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import controle.web.AlterarCommand;
 import controle.web.ExcluirCommand;
 import controle.web.ICommand;
@@ -10,12 +17,6 @@ import controle.web.vh.impl.CarrinhoVH;
 import controle.web.vh.impl.ItemCarrinhoVH;
 import dominio.venda.Carrinho;
 import dominio.venda.ItemCarrinho;
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {"/cli-carrinho-compras"})
 
