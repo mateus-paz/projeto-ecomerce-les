@@ -3,6 +3,9 @@ package controle.web.vh.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import controle.web.vh.IViewHelper;
 import dominio.EntidadeDominio;
 import dominio.cliente.Cliente;
@@ -12,8 +15,6 @@ import dominio.venda.ItemTroca;
 import dominio.venda.Pedido;
 import dominio.venda.PedidoTroca;
 import dominio.venda.StatusPedido;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 
 public class PedidoTrocaVH implements IViewHelper {
 
