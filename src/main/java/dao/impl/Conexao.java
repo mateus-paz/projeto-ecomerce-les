@@ -12,7 +12,7 @@ public class Conexao {
 
 	public static Connection getConnectionPostgres() throws ClassNotFoundException, SQLException {
 		driver = "org.postgresql.Driver";
-		url = "jdbc:postgresql://localhost:5432/postgres";
+		url = "jdbc:postgresql://localhost:5432/refactoring_ecomerce_les";
 		user = "postgres";
 		password = "postgres";
 		
