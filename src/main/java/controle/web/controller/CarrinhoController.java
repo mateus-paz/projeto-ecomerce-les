@@ -15,6 +15,7 @@ import controle.web.ICommand;
 import controle.web.SalvarCommand;
 import controle.web.vh.impl.CarrinhoVH;
 import controle.web.vh.impl.ItemCarrinhoVH;
+import dominio.Resultado;
 import dominio.venda.Carrinho;
 import dominio.venda.ItemCarrinho;
 
@@ -48,7 +49,7 @@ public class CarrinhoController  extends HttpServlet {
 	            cmd = new ExcluirCommand();
 	        }
 	            
-	        String retorno = (String) cmd.executar(item);
+	        String retorno = cmd.executar(item).getMensagemErro();
 	        
             if(retorno != null) {
                 request.setAttribute("mensagemErro", retorno);
@@ -58,8 +59,11 @@ public class CarrinhoController  extends HttpServlet {
 		
         CarrinhoVH carrinhoVh = new CarrinhoVH();
         carrinho = (Carrinho) carrinhoVh.getEntidade(request);
-		
-		carrinhoVh.setEntidade(response, request, carrinho);
+
+        Resultado resultado = new Resultado();
+        resultado.setEntidade(carrinho);
+
+		carrinhoVh.setEntidade(response, request, resultado);
 			
 		RequestDispatcher rd = request.getRequestDispatcher("cli_carrinho_compras.jsp");
 		
