@@ -16,6 +16,7 @@ import controle.web.ConsultarPorIdCommand;
 import controle.web.ICommand;
 import controle.web.vh.impl.EstoqueVH;
 import controle.web.vh.impl.ItemEstoqueVH;
+import dominio.Resultado;
 import dominio.venda.Estoque;
 import dominio.venda.ItemEstoque;
 
@@ -35,7 +36,7 @@ public class EstoqueController extends HttpServlet {
 
 			ICommand cmd = new AlterarCommand();
 
-			String retorno = (String) cmd.executar(estoque);
+			String retorno = cmd.executar(estoque).getMensagemErro();
 
 			if (retorno != null) {
 				request.setAttribute("retorno", retorno);
@@ -61,7 +62,10 @@ public class EstoqueController extends HttpServlet {
 
 				estoque.setItens(itens);
 
-				estoqueVh.setEntidade(response, request, estoque);
+				Resultado resultado = new Resultado();
+				resultado.setEntidade(estoque);
+
+				estoqueVh.setEntidade(response, request, resultado);
 
 				rd = request.getRequestDispatcher("adm_estoque.jsp");
 
@@ -71,22 +75,25 @@ public class EstoqueController extends HttpServlet {
 				ItemEstoque item = (ItemEstoque) iteVh.getEntidade(request);
 
 				ICommand cmd = null;
+				Resultado resultado = new Resultado();
 
 				if (operacao != null)
 					if (operacao.equals("ConsultarPorId")) {
 						cmd = new ConsultarPorIdCommand();
-						item = (ItemEstoque) cmd.executar(item);
+						resultado = cmd.executar(item);
 
 					} else if (operacao.equals("Alterar")) {
 						cmd = new AlterarCommand();
-						String retorno = (String) cmd.executar(item);
+						
+						resultado = cmd.executar(item);
+						String retorno = resultado.getMensagemErro();
 
 						if (retorno != null) {
 							request.setAttribute("mensagem", retorno);
 						}
 					}
 
-				iteVh.setEntidade(response, request, item);
+				iteVh.setEntidade(response, request, resultado);
 
 				rd = request.getRequestDispatcher("adm_item_detalhes.jsp");
 
@@ -96,9 +103,9 @@ public class EstoqueController extends HttpServlet {
 				ItemEstoque it = (ItemEstoque) itemVh.getEntidade(request);
 
 				ICommand cmd = new ConsultarPorIdCommand();
-				it = (ItemEstoque) cmd.executar(it);
+				Resultado resultado = cmd.executar(it);
 
-				itemVh.setEntidade(response, request, it);
+				itemVh.setEntidade(response, request, resultado);
 
 				rd = request.getRequestDispatcher("cli_item_detalhes.jsp");
 
@@ -111,14 +118,16 @@ public class EstoqueController extends HttpServlet {
 					if (operacao.equals("Consultar")) {
 
 						ICommand cmd = new ConsultarCommand();
+						Resultado resultado = cmd.executar(estoque);
 
-						@SuppressWarnings("unchecked")
-						List<ItemEstoque> itens = (List<ItemEstoque>) cmd.executar(estoque);
-
+						List<ItemEstoque> itens = resultado.getEntidades().stream().map(entity -> {
+							return (ItemEstoque) entity;
+						}).toList();
+			
 						estoque.setItens(itens);
-
-						estoqueVh.setEntidade(response, request, estoque);
-
+						resultado.setEntidade(estoque);
+						
+						estoqueVh.setEntidade(response, request, resultado);
 					}
 
 				}

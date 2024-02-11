@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controle.web.vh.IViewHelper;
 import dominio.EntidadeDominio;
+import dominio.Resultado;
 import dominio.venda.ItemEstoque;
 
 public class ItemEstoqueVH implements IViewHelper {
@@ -57,8 +58,8 @@ public class ItemEstoqueVH implements IViewHelper {
     }
 
     @Override
-    public void setEntidade(HttpServletResponse response, HttpServletRequest request, Object msg) {
-        request.getSession().setAttribute("item", (ItemEstoque) msg);
+    public void setEntidade(HttpServletResponse response, HttpServletRequest request, Resultado resultado) {
+        request.getSession().setAttribute("item", (ItemEstoque) resultado.getEntidades().get(0));
         
     }
 

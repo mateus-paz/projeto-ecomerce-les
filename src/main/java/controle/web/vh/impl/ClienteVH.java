@@ -1,5 +1,6 @@
 package controle.web.vh.impl;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controle.web.vh.IViewHelper;
 import dominio.EntidadeDominio;
+import dominio.Resultado;
 import dominio.cliente.Cliente;
 import dominio.cliente.Endereco;
 import dominio.cliente.Genero;
@@ -150,9 +152,9 @@ public class ClienteVH implements IViewHelper {
 	}
 
 	@Override
-	public void setEntidade(HttpServletResponse response, HttpServletRequest request, Object msg) {
+	public void setEntidade(HttpServletResponse response, HttpServletRequest request, Resultado resultado) {
 
-		request.getSession().setAttribute("cliente", (Cliente) msg);
+			request.getSession().setAttribute("cliente", (Cliente) resultado.getEntidades().get(0));
 
 	}
 

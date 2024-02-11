@@ -16,6 +16,7 @@ import controle.web.ConsultarPorIdCommand;
 import controle.web.ICommand;
 import controle.web.SalvarCommand;
 import controle.web.vh.impl.PedidoVH;
+import dominio.Resultado;
 import dominio.venda.Pedido;
 
 @WebServlet(urlPatterns = { "/cli-finalizar-pedido", "/cli-pedidos", "/cli-pedido-detalhes", "/adm-pedidos",
@@ -32,13 +33,14 @@ public class PedidoController extends HttpServlet {
 		if (request.getRequestURI().equals("/EcomerceLivroLES/cli-finalizar-pedido")) {
 
 			ICommand cmd = new SalvarCommand();
-			String retorno = (String) cmd.executar(pedido);
+			Resultado resultado = cmd.executar(pedido);
+			String retorno = resultado.getMensagemErro();
 
 			if (retorno != null) {
 				request.setAttribute("mensagemErro", retorno);
 			}
 
-			pedidoVh.setEntidade(response, request, pedido);
+			pedidoVh.setEntidade(response, request, resultado);
 			request.getSession().setAttribute("pedido", pedido);
 
 			rd = request.getRequestDispatcher("/cli_pedido_detalhes.jsp");
@@ -57,10 +59,9 @@ public class PedidoController extends HttpServlet {
 		} else if (request.getRequestURI().equals("/EcomerceLivroLES/cli-pedido-detalhes")) {
 
 			ICommand cmd = new ConsultarPorIdCommand();
+			Resultado resultado = cmd.executar(pedido);
 
-			pedido = (Pedido) cmd.executar(pedido);
-
-			pedidoVh.setEntidade(response, request, pedido);
+			pedidoVh.setEntidade(response, request, resultado);
 
 			rd = request.getRequestDispatcher("/cli_pedido_detalhes.jsp");
 
@@ -82,13 +83,12 @@ public class PedidoController extends HttpServlet {
 
 			if (operacao.equals("Alterar")) {
 				cmd = new AlterarCommand();
-				cmd.executar(pedido);
 			} else if (operacao.equals("ConsultarPorId")) {
 				cmd = new ConsultarPorIdCommand();
-				pedido = (Pedido) cmd.executar(pedido);
 			}
 
-			pedidoVh.setEntidade(response, request, pedido);
+			Resultado resultado = cmd.executar(pedido);
+			pedidoVh.setEntidade(response, request, resultado);
 
 			rd = request.getRequestDispatcher("/adm_pedido_detalhes.jsp");
 		}

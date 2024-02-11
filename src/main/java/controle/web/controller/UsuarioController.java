@@ -13,6 +13,7 @@ import controle.web.AlterarCommand;
 import controle.web.ICommand;
 import controle.web.vh.impl.UsuarioVH;
 import dao.impl.UsuarioDAO;
+import dominio.Resultado;
 import dominio.cliente.Usuario;
 
 @WebServlet(urlPatterns = { "/autenticar", "/adm-home", "/cli-home", "/login", "/cli-alterar-login" })
@@ -34,7 +35,10 @@ public class UsuarioController extends HttpServlet {
 
 				usuario = (Usuario) usrDao.consultarPorId(usuario);
 
-				usuarioVh.setEntidade(response, request, usuario);
+				Resultado resultado = new Resultado();
+				resultado.setEntidade(usuario);
+
+				usuarioVh.setEntidade(response, request, resultado);
 
 				if (usuario.isAdmin()) {
 					response.sendRedirect("adm-home");
@@ -87,12 +91,13 @@ public class UsuarioController extends HttpServlet {
 			Usuario usr = (Usuario) usrVh.getEntidade(request);
 
 			ICommand cmd = new AlterarCommand();
-			String retorno = (String) cmd.executar(usr);
-
+			Resultado resultado = cmd.executar(usr);
+			String retorno = resultado.getMensagemErro();
+			
 			if (retorno != null) {
 				request.getSession().setAttribute("mensagem", retorno);
 			} else {
-				usrVh.setEntidade(response, request, usr);
+				usrVh.setEntidade(response, request, resultado);
 			}
 
 			try {

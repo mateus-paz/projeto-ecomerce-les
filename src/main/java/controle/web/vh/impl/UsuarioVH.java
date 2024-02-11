@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controle.web.vh.IViewHelper;
 import dominio.EntidadeDominio;
+import dominio.Resultado;
 import dominio.cliente.Usuario;
 
 public class UsuarioVH implements IViewHelper {
@@ -56,9 +57,9 @@ public class UsuarioVH implements IViewHelper {
 	}
 
 	@Override
-	public void setEntidade(HttpServletResponse response, HttpServletRequest request, Object retorno) {
+	public void setEntidade(HttpServletResponse response, HttpServletRequest request, Resultado resultado) {
 
-		request.getSession().setAttribute("usuario", (Usuario) retorno);
+		request.getSession().setAttribute("usuario", (Usuario) resultado.getEntidades().get(0));
 
 	}
 

@@ -15,6 +15,7 @@ import controle.web.ICommand;
 import controle.web.SalvarCommand;
 import controle.web.vh.impl.CartaoCreditoVH;
 import controle.web.vh.impl.PagamentoVH;
+import dominio.Resultado;
 import dominio.venda.CartaoCredito;
 import dominio.venda.Pagamento;
 
@@ -39,7 +40,7 @@ public class PagamentoController extends HttpServlet {
 				cmd = new ExcluirCommand();
 			}
 
-			String retorno = (String) cmd.executar(card);
+			String retorno = cmd.executar(card).getMensagemErro();
 
 			if (retorno != null) {
 				request.getSession().setAttribute("mensagem", retorno);
@@ -58,6 +59,9 @@ public class PagamentoController extends HttpServlet {
 			PagamentoVH pagamentoVh = new PagamentoVH();
 			Pagamento pagamento = (Pagamento) pagamentoVh.getEntidade(request);
 
+			Resultado resultado = new Resultado();
+			resultado.setEntidade(pagamento);
+
 			if (operacao != null) {
 
 				ICommand cmd = null;
@@ -70,15 +74,16 @@ public class PagamentoController extends HttpServlet {
 					cmd = new ExcluirCommand();
 				}
 
-				String retorno = (String) cmd.executar(pagamento);
-
+				resultado = cmd.executar(pagamento);
+				String retorno = resultado.getMensagemErro();
+				
 				if (retorno != null) {
 					request.setAttribute("mensagemErro", retorno);
 				}
 
 			}
 
-			pagamentoVh.setEntidade(response, request, pagamento);
+			pagamentoVh.setEntidade(response, request, resultado);
 
 			RequestDispatcher rd = request.getRequestDispatcher("/cli_selecionar_pagamento.jsp");
 

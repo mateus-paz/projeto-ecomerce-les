@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controle.web.vh.IViewHelper;
 import dominio.EntidadeDominio;
+import dominio.Resultado;
 import dominio.venda.Carrinho;
 import dominio.venda.ItemCarrinho;
 import dominio.venda.ItemEstoque;
@@ -82,7 +83,7 @@ public class ItemCarrinhoVH implements IViewHelper {
 	}
 
 	@Override
-	public void setEntidade(HttpServletResponse response, HttpServletRequest request, Object msg) {
+	public void setEntidade(HttpServletResponse response, HttpServletRequest request, Resultado resultado) {
 		// TODO Auto-generated method stub
 
 	}

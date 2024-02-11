@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import controle.web.vh.IViewHelper;
 import dao.impl.CartaoCreditoDAO;
 import dominio.EntidadeDominio;
+import dominio.Resultado;
 import dominio.cliente.Cliente;
 import dominio.venda.Bandeira;
 import dominio.venda.CartaoCredito;
@@ -57,7 +58,7 @@ public class CartaoCreditoVH implements IViewHelper {
 	}
 
 	@Override
-	public void setEntidade(HttpServletResponse response, HttpServletRequest request, Object msg) {
+	public void setEntidade(HttpServletResponse response, HttpServletRequest request, Resultado resultado) {
 		// TODO Auto-generated method stub
 
 	}

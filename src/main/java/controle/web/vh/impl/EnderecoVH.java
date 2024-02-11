@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import controle.web.vh.IViewHelper;
 import dao.impl.EnderecoDAO;
 import dominio.EntidadeDominio;
+import dominio.Resultado;
 import dominio.cliente.Cidade;
 import dominio.cliente.Cliente;
 import dominio.cliente.Endereco;
@@ -77,8 +78,8 @@ public class EnderecoVH implements IViewHelper {
 
 	}
 
-	public void setEntidade(HttpServletResponse response, HttpServletRequest request, Object msg) {
-		request.getSession().setAttribute("endereco", (Endereco) msg);
+	public void setEntidade(HttpServletResponse response, HttpServletRequest request, Resultado resultado) {
+		request.getSession().setAttribute("endereco", (Endereco) resultado.getEntidades().get(0));
 
 	}
 

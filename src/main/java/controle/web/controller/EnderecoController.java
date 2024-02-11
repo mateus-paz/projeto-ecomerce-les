@@ -14,6 +14,7 @@ import controle.web.ICommand;
 import controle.web.SalvarCommand;
 import controle.web.vh.impl.EnderecoEntregaVH;
 import controle.web.vh.impl.EnderecoVH;
+import dominio.Resultado;
 import dominio.cliente.Endereco;
 import dominio.venda.EnderecoEntrega;
 
@@ -39,7 +40,7 @@ public class EnderecoController extends HttpServlet {
 				cmd = new ExcluirCommand();
 			}
 
-			String retorno = (String) cmd.executar(end);
+			String retorno = cmd.executar(end).getMensagemErro();
 
 			if (retorno != null) {
 				request.getSession().setAttribute("mensagem", retorno);
@@ -69,7 +70,8 @@ public class EnderecoController extends HttpServlet {
 						cmd = new ExcluirCommand();
 					}
 
-					String retorno = (String) cmd.executar(end);
+					Resultado resultado = cmd.executar(end);
+					String retorno = resultado.getMensagemErro();
 
 					if (retorno != null) {
 						request.setAttribute("mensagemErro", retorno);
@@ -77,7 +79,7 @@ public class EnderecoController extends HttpServlet {
 						if (operacao.equals("Remover"))
 							end = null;
 
-						endEntVh.setEntidade(response, request, end);
+						endEntVh.setEntidade(response, request, resultado);
 					}
 				}
 

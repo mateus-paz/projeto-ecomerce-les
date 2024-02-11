@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controle.web.vh.IViewHelper;
 import dominio.EntidadeDominio;
+import dominio.Resultado;
 import dominio.cliente.Cliente;
 import dominio.cliente.Usuario;
 import dominio.venda.ItemPedido;
@@ -111,9 +112,9 @@ public class PedidoTrocaVH implements IViewHelper {
     }
 
     @Override
-    public void setEntidade(HttpServletResponse response, HttpServletRequest request, Object msg) {
+    public void setEntidade(HttpServletResponse response, HttpServletRequest request, Resultado resultado) {
 
-        request.getSession().setAttribute("pedidoTroca", (PedidoTroca) msg);
+        request.getSession().setAttribute("pedidoTroca", (PedidoTroca) resultado.getEntidades().get(0));
 
     }
 
