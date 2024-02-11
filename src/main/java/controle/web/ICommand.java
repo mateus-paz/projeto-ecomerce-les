@@ -1,8 +1,9 @@
 package controle.web;
 
 import dominio.EntidadeDominio;
+import dominio.Resultado;
 
 public interface ICommand {
-	public Object executar(EntidadeDominio entidade); 
+	public Resultado executar(EntidadeDominio entidade); 
 
 }
