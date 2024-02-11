@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controle.web.vh.IViewHelper;
 import dominio.EntidadeDominio;
+import dominio.Resultado;
 import dominio.cliente.Cliente;
 import dominio.venda.Carrinho;
 import dominio.venda.CartaoCompra;
@@ -110,8 +111,8 @@ public class PagamentoVH implements IViewHelper {
     }
 
     @Override
-    public void setEntidade(HttpServletResponse response, HttpServletRequest request, Object msg) {
-        Pagamento pagamento = (Pagamento) msg;
+    public void setEntidade(HttpServletResponse response, HttpServletRequest request, Resultado resultado) {
+        Pagamento pagamento = (Pagamento) resultado.getEntidades().get(0);
         String operacao = request.getParameter("operacao");
 
         String mensagemErro = (String) request.getAttribute("mensagemErro");

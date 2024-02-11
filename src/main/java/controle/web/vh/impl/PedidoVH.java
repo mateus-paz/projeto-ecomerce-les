@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controle.web.vh.IViewHelper;
 import dominio.EntidadeDominio;
+import dominio.Resultado;
 import dominio.cliente.Cliente;
 import dominio.cliente.Usuario;
 import dominio.venda.Carrinho;
@@ -91,8 +92,8 @@ public class PedidoVH implements IViewHelper {
     }
 
     @Override
-    public void setEntidade(HttpServletResponse response, HttpServletRequest request, Object msg) {
-        request.getSession().setAttribute("pedido", (Pedido) msg);
+    public void setEntidade(HttpServletResponse response, HttpServletRequest request, Resultado resultado) {
+        request.getSession().setAttribute("pedido", (Pedido) resultado.getEntidades().get(0));
 
     }
 

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import controle.web.vh.IViewHelper;
 import dominio.EntidadeDominio;
+import dominio.Resultado;
 import dominio.cliente.Endereco;
 import dominio.venda.EnderecoEntrega;
 
@@ -43,8 +44,8 @@ public class EnderecoEntregaVH implements IViewHelper {
     }
 
     @Override
-    public void setEntidade(HttpServletResponse response, HttpServletRequest request, Object msg) {
-        request.getSession().setAttribute("enderecoSelecionado", (EnderecoEntrega) msg);
+    public void setEntidade(HttpServletResponse response, HttpServletRequest request, Resultado resultado) {
+        request.getSession().setAttribute("enderecoSelecionado", (EnderecoEntrega) resultado.getEntidades().get(0));
     }
 
 }
