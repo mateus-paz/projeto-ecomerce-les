@@ -12,6 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public abstract class EntidadeDominio {
+
     protected int id;
     private LocalDate dtCadastro;
 
