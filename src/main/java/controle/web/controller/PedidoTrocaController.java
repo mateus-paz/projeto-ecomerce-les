@@ -13,12 +13,12 @@ import controle.web.vh.impl.PedidoTrocaVH;
 import dao.impl.PedidoTrocaDAO;
 import dominio.venda.Estoque;
 import dominio.venda.PedidoTroca;
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {"/cli-pedido-troca-detalhes", "/cli-pedidos-troca",
         "/adm-pedidos-troca","/adm-pedido-troca-detalhes"})

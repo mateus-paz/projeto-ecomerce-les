@@ -12,8 +12,8 @@ import dominio.venda.ItemTroca;
 import dominio.venda.Pedido;
 import dominio.venda.PedidoTroca;
 import dominio.venda.StatusPedido;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class PedidoTrocaVH implements IViewHelper {
 

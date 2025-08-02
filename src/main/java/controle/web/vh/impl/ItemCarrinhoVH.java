@@ -5,8 +5,8 @@ import dominio.EntidadeDominio;
 import dominio.venda.Carrinho;
 import dominio.venda.ItemCarrinho;
 import dominio.venda.ItemEstoque;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class ItemCarrinhoVH implements IViewHelper {
 

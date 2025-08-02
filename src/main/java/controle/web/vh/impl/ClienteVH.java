@@ -11,8 +11,8 @@ import dominio.cliente.Genero;
 import dominio.cliente.Telefone;
 import dominio.cliente.TipoTelefone;
 import dominio.cliente.Usuario;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class ClienteVH implements IViewHelper {
 

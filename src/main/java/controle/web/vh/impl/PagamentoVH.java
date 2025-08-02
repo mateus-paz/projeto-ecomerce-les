@@ -11,8 +11,8 @@ import dominio.venda.CartaoCredito;
 import dominio.venda.Cupom;
 import dominio.venda.EnderecoEntrega;
 import dominio.venda.Pagamento;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class PagamentoVH implements IViewHelper {
 

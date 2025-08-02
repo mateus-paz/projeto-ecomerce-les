@@ -3,8 +3,8 @@ package controle.web.vh.impl;
 import controle.web.vh.IViewHelper;
 import dominio.EntidadeDominio;
 import dominio.venda.ItemEstoque;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 public class ItemEstoqueVH implements IViewHelper {
 
