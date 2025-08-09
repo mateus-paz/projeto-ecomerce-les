@@ -20,27 +20,27 @@ public class ValidarDadosEndereco extends AbstractValidador{
 	        
 		StringBuilder msg = new StringBuilder();
 		
-		if(isNull(endereco.getTpResidencia())) {
+		if(isBlank(endereco.getTpResidencia())) {
 			msg.append("E obrigatorio o cadastro de um Tipo de Residencia \n");
 		}
 		
-		if(isNull(endereco.getTpLogradouro())) {
+		if(isBlank(endereco.getTpLogradouro())) {
 			msg.append("E obrigatorio o cadastro de um Tipo de Logradouro \n");
 		}
 		
-		if(isNull(endereco.getLogradouro())) {
+		if(isBlank(endereco.getLogradouro())) {
 			msg.append("E obrigatorio o cadastro de um Logradouro \n");
 		}
 		
-		if(isNull(endereco.getNumero())) {
+		if(isBlank(endereco.getNumero())) {
 			msg.append("E obrigatorio o cadastro de um numero \n");
 		}
 		
-		if(isNull(endereco.getBairro())) {
+		if(isBlank(endereco.getBairro())) {
 			msg.append("E obrigatorio o cadastro de um bairro \n");
 		}
 		
-		if(isNull(endereco.getCep())) {
+		if(isBlank(endereco.getCep())) {
 			msg.append("E obrigatorio o cadastro de um CEP \n");
 		}
 		
@@ -48,15 +48,15 @@ public class ValidarDadosEndereco extends AbstractValidador{
             msg.append("O cep cadastrado deve, obrigatoriamente, ter 8 digitos \n");
         }
 		
-		if(isNull(endereco.getCidade())) {
+		if(isBlank(endereco.getCidade())) {
 			msg.append("E obrigatorio o cadastro de uma cidade \n");
 		}
 		
-		if(isNull(endereco.getCidade().getEstado())) {
+		if(isBlank(endereco.getCidade().getEstado())) {
 			msg.append("E obrigatorio o cadastro de um estado \n");
 		}
 		
-		if(isNull(endereco.getCidade().getEstado().getPais())) {
+		if(isBlank(endereco.getCidade().getEstado().getPais())) {
 			msg.append("E obrigatorio o cadastro de um pais \n");
 		}
 		

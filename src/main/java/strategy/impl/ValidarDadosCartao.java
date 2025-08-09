@@ -16,20 +16,20 @@ public class ValidarDadosCartao extends AbstractValidador {
             cartao = (CartaoCredito) entidade;
         }
         
-        if(isNull(cartao.getNumero())) {
+        if(isBlank(cartao.getNumero())) {
             sb.append("E obrigatorio o cadastro de um numero ao cartao \n");
         }
-        if(isNull(cartao.getTitular())) {
+        if(isBlank(cartao.getTitular())) {
             sb.append("E obrigatorio o cadastro do nome do titular cartao \n");
         } 
         
-        if(isNull(cartao.getBandeira())) {
+        if(isBlank(cartao.getBandeira())) {
             sb.append("E obrigatorio a selecao de uma bandeira para o cartao \n");
         } else if(cartao.getBandeira().getValor()!= 1 && cartao.getBandeira().getValor()!= 2) {
             sb.append("E obrigatorio a selecao de uma bandeira para o cartao \n");
         }
         
-        if(isNull(cartao.getCvv())) {
+        if(isBlank(cartao.getCvv())) {
             sb.append("E obrigatorio o cadastro do CVV do cartao \n");
         }
 

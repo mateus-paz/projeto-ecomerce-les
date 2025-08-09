@@ -11,4 +11,12 @@ public enum TipoResidencia {
     private String descricao;
     private int valor;
 
+    public static TipoResidencia obterPorDescricao(String descricao) {
+        for (TipoResidencia tipo : TipoResidencia.values()) {
+            if (tipo.getDescricao().equalsIgnoreCase(descricao)) {
+                return tipo;
+            }
+        }
+        throw new IllegalArgumentException("Tipo de residência inválido: " + descricao);
+    }
 }

@@ -87,7 +87,7 @@ public class ItemEstoqueDAO implements IDAO {
     }
 
     @Override
-    public void excluir(EntidadeDominio entidade) {
+    public void excluirPorId(EntidadeDominio entidade) {
         // TODO Auto-generated method stub
 
     }
@@ -252,22 +252,22 @@ public class ItemEstoqueDAO implements IDAO {
                 Livro livro = new Livro();
                 livro.setId(rs.getInt("etq_lvr_id"));
                 livro = (Livro) livroDao.consultarPorId(livro);
-                
+
                 int idCategoriaStatus = rs.getInt("etq_cgs_id");
                 CategoriaStatus catStatus = CategoriaStatus.values()[(idCategoriaStatus--)];
-                
+
                 int quantidade = rs.getInt("etq_quantidade");
-                BigDecimal valorVenda = new BigDecimal (rs.getString("etq_valor_venda"));
+                BigDecimal valorVenda = new BigDecimal(rs.getString("etq_valor_venda"));
                 boolean status = rs.getBoolean("etq_status");
-                
-                item = new ItemEstoque(); 
-                
+
+                item = new ItemEstoque();
+
                 item.setLivro(livro);
                 item.setQuantidade(quantidade);
                 item.setValorVenda(valorVenda);
                 item.setAtivo(status);
                 item.setCatStatus(catStatus);
-                
+
                 int id = rs.getInt("etq_id");
                 item.setId(id);
             }
@@ -316,22 +316,22 @@ public class ItemEstoqueDAO implements IDAO {
                 Livro livro = new Livro();
                 livro.setId(rs.getInt("etq_lvr_id"));
                 livro = (Livro) livroDao.consultarPorId(livro);
-                
+
                 int idCategoriaStatus = rs.getInt("etq_cgs_id");
                 CategoriaStatus catStatus = CategoriaStatus.values()[(idCategoriaStatus--)];
-                
+
                 int quantidade = rs.getInt("etq_quantidade");
-                BigDecimal valorVenda = new BigDecimal (rs.getString("etq_valor_venda"));
+                BigDecimal valorVenda = new BigDecimal(rs.getString("etq_valor_venda"));
                 boolean status = rs.getBoolean("etq_status");
-                
-                item = new ItemEstoque(); 
-                
+
+                item = new ItemEstoque();
+
                 item.setLivro(livro);
                 item.setQuantidade(quantidade);
                 item.setValorVenda(valorVenda);
                 item.setAtivo(status);
                 item.setCatStatus(catStatus);
-                
+
                 int id = rs.getInt("etq_id");
                 item.setId(id);
             }

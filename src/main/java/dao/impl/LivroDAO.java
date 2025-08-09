@@ -40,7 +40,7 @@ public class LivroDAO implements IDAO {
     }
 
     @Override
-    public void excluir(EntidadeDominio entidade) {
+    public void excluirPorId(EntidadeDominio entidade) {
         // TODO Auto-generated method stub
 
     }

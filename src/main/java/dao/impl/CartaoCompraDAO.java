@@ -140,7 +140,7 @@ public class CartaoCompraDAO implements IDAO {
     }
 
     @Override
-    public void excluir(EntidadeDominio entidade) {
+    public void excluirPorId(EntidadeDominio entidade) {
         CartaoCompra cartao = (CartaoCompra) entidade;
         PreparedStatement pst = null;
         StringBuilder sql = new StringBuilder();

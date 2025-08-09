@@ -1,0 +1,9 @@
+spring:
+  profiles:
+    active: postgres
+
+database:
+  driver: org.postgresql.Driver
+  url: jdbc:postgresql://db:5432/ecomerce
+  user: user
+  password: password

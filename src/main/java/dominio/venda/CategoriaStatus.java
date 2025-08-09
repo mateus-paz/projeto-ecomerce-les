@@ -11,4 +11,12 @@ public enum CategoriaStatus {
     private String descricao;
     private int valor;
 
+    public static CategoriaStatus obterPorDescricao(String descricao) {
+        for (CategoriaStatus status : CategoriaStatus.values()) {
+            if (status.getDescricao().equalsIgnoreCase(descricao)) {
+                return status;
+            }
+        }
+        throw new IllegalArgumentException("Categoria de status inválida: " + descricao);
+    }
 }

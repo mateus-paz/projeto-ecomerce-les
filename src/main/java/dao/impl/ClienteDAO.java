@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import controle.web.ConsultarCommand;
-import controle.web.ICommand;
+import controle.command.ICommand;
+import controle.command.impl.ConsultarCommand;
 import dao.IDAO;
 import dominio.EntidadeDominio;
 import dominio.cliente.Cliente;
@@ -20,7 +20,6 @@ import dominio.cliente.Usuario;
 import dominio.venda.Carrinho;
 import dominio.venda.CartaoCredito;
 import dominio.venda.Cupom;
-import dominio.venda.ItemCarrinho;
 
 public class ClienteDAO implements IDAO {
     private Connection connection = null;
@@ -175,7 +174,7 @@ public class ClienteDAO implements IDAO {
     }
 
     @Override
-    public void excluir(EntidadeDominio entidade) {
+    public void excluirPorId(EntidadeDominio entidade) {
 
     }
 
@@ -423,10 +422,10 @@ public class ClienteDAO implements IDAO {
 
                 ICommand cmd = new ConsultarCommand();
 
-                @SuppressWarnings("unchecked")
-                List<ItemCarrinho> itens = (List<ItemCarrinho>) cmd.executar(carrinho);
+                // @SuppressWarnings("unchecked")
+                // List<ItemCarrinho> itens = (List<ItemCarrinho>) cmd.executar(carrinho);
 
-                carrinho.setItens(itens);
+                // carrinho.setItens(itens);
 
                 return carrinho;
             }

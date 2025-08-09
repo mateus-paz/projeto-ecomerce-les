@@ -144,7 +144,7 @@ public class ItemCarrinhoDAO implements IDAO {
     }
 
     @Override
-    public void excluir(EntidadeDominio entidade) {
+    public void excluirPorId(EntidadeDominio entidade) {
         ItemCarrinho item = (ItemCarrinho) entidade;
         StringBuilder sql = new StringBuilder();
         PreparedStatement pst = null;

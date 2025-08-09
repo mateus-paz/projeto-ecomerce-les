@@ -11,15 +11,15 @@ public class ValidarDadosTelefone extends AbstractValidador {
 		
 		StringBuilder msg = new StringBuilder();
 		
-		if(isNull(telefone.getTpTelefone())) {
+		if(isBlank(telefone.getTpTelefone())) {
 			msg.append("E obrigatorio a escolha de um tipo de telefone; ");
 		}
 		
-		if(isNull(telefone.getDdd())) {
+		if(isBlank(telefone.getDdd())) {
 			msg.append("E obrigatorio o cadastro de um DDD; ");
 		}
 		
-		if(isNull(telefone.getNumero())) {
+		if(isBlank(telefone.getNumero())) {
 			msg.append("E obrigatorio o cadastro de um numero de telefone; ");
 		}else if(telefone.getNumero().length() != 9 && telefone.getNumero().length() != 10) {
 		    msg.append("O numero do telefone deve ter 8 ou 9 digitos; ");

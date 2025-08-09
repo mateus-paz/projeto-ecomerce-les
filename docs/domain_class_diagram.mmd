@@ -1,0 +1,301 @@
+classDiagram
+  direction TD
+
+  class EntidadeDominio {
+    <<abstract>>
+    # int id
+    - LocalDate dtCadastro
+  }
+
+  class Cidade {
+    - String nome
+  }
+  EntidadeDominio <|-- Cidade
+
+  class Cliente {
+    - String nome
+    - String dtNascimento
+    - String cpf
+  }
+  EntidadeDominio <|-- Cliente
+
+  class Endereco {
+    - String logradouro
+    - String numero
+    - String bairro
+    - String cep
+    - String complemento
+    - String nomeIdentificacao
+  }
+  EntidadeDominio <|-- Endereco
+
+  class Estado {
+    - String nome
+  }
+  EntidadeDominio <|-- Estado
+
+  class Genero {
+    <<enum>>
+    MASCULINO
+    FEMININO
+    NAOBINARIO
+  }
+
+  class Notificacao {
+    - String mensagem
+  }
+  EntidadeDominio <|-- Notificacao
+
+  class Pais {
+    - String nome
+  }
+  EntidadeDominio <|-- Pais
+
+  class Telefone {
+    - String ddd
+    - String numero
+  }
+  EntidadeDominio <|-- Telefone
+
+  class TipoLogradouro {
+    <<enum>>
+    RUA
+    AVENIDA
+    OUTRO
+  }
+
+  class TipoResidencia {
+    <<enum>>
+    CASA
+    APARTAMENTO
+    OUTRO
+  }
+
+  class TipoTelefone {
+    <<enum>>
+    FIXO
+    CELULAR
+  }
+
+  class Usuario {
+    - boolean isAdmin
+    - String email
+    - String senha
+    - String novaSenha
+    - String confirmarSenha
+  }
+  EntidadeDominio <|-- Usuario
+
+  class Autor {
+    - String nome
+  }
+  EntidadeDominio <|-- Autor
+
+  class Categoria {
+    - String descricao
+  }
+  EntidadeDominio <|-- Categoria
+
+  class Dimensao {
+    - double altura
+    - double largura
+    - double peso
+    - double profundidade
+  }
+  EntidadeDominio <|-- Dimensao
+
+  class GrupoPrecificacao {
+    <<enum>>
+    Grupo1
+    Grupo2
+    Grupo3
+  }
+
+  class Livro {
+    - String titulo
+    - String editora
+    - int ano
+    - int edicao
+    - int numPaginas
+    - String ISBN
+    - String codigoBarras
+    - String sinopse
+    - String urlCapa
+  }
+  EntidadeDominio <|-- Livro
+
+  class Bandeira {
+    <<enum>>
+    VISA
+    MASTERCARD
+  }
+
+  class Carrinho {
+    - BigDecimal valorTotal
+    + BigDecimal getValorTotal()
+  }
+  EntidadeDominio <|-- Carrinho
+
+  class CartaoCompra {
+    - BigDecimal valor
+    - boolean isRegistrar
+  }
+  EntidadeDominio <|-- CartaoCompra
+
+  class CartaoCredito {
+    - String nomeIdentificacao
+    - String dataValidade
+    - String titular
+    - String numero
+    - String cvv
+  }
+  EntidadeDominio <|-- CartaoCredito
+
+  class CategoriaStatus {
+    <<enum>>
+    EM_ESTOQUE
+    FORA_DE_MERCADO
+    SEM_ESTOQUE
+  }
+
+  class Cupom {
+    - String codigo
+    - BigDecimal valor
+    - LocalDate validade
+  }
+  EntidadeDominio <|-- Cupom
+
+  class EnderecoEntrega {
+    - boolean salvar
+  }
+  EntidadeDominio <|-- EnderecoEntrega
+
+  class Estoque {
+    - String valorBusca
+    - List~String~ parametros
+  }
+  EntidadeDominio <|-- Estoque
+
+  class Frete {
+    - int prazo
+    - BigDecimal valor
+  }
+
+  class Item {
+    <<abstract>>
+    - int quantidade
+    - BigDecimal valorVenda
+  }
+  EntidadeDominio <|-- Item
+
+  class ItemCarrinho {
+  }
+  Item <|-- ItemCarrinho
+
+  class ItemEstoque {
+    - BigDecimal precoCusto
+    - boolean ativo
+    - String justificativaStatus
+  }
+  Item <|-- ItemEstoque
+
+  class ItemPedido {
+  }
+  Item <|-- ItemPedido
+
+  class ItemTroca {
+  }
+  Item <|-- ItemTroca
+
+  class Pagamento {
+    - BigDecimal totalCompra
+    - BigDecimal totalAlocado
+    + BigDecimal getTotalCompra()
+    + BigDecimal getTotalAlocado()
+  }
+  EntidadeDominio <|-- Pagamento
+
+  class Pedido {
+    - BigDecimal valorTotal
+    + BigDecimal getValorTotal()
+  }
+  EntidadeDominio <|-- Pedido
+
+  class PedidoTroca {
+    - BigDecimal valorTotal
+    + BigDecimal getValorTotal()
+  }
+  EntidadeDominio <|-- PedidoTroca
+
+  class StatusPedido {
+    <<enum>>
+    PROCESSAMENTO
+    TRANSITO
+    ENTREGUE
+    TROCA
+    AUTORIZADA
+    RECUSADA
+    TROCADO
+  }
+
+  class TipoCupom {
+    <<enum>>
+    TROCA
+    PROMOCIONAL
+  }
+
+  Cidade "1" -- "1" Estado
+  Cliente "1" -- "1" Genero
+  Cliente "1" -- "1" Usuario
+  Cliente "1" -- "1" Telefone
+  Cliente "1" o-- "N" Endereco : tem
+  Cliente "1" o-- "N" CartaoCredito : tem
+  Cliente "1" o-- "N" Cupom : tem
+  Endereco "1" -- "1" TipoResidencia
+  Endereco "1" -- "1" TipoLogradouro
+  Endereco "1" -- "1" Cidade
+  Endereco "N" -- "1" Cliente
+  Endereco "N" -- "1" Pedido
+  Estado "1" -- "1" Pais
+  Notificacao "N" -- "1" Usuario
+  Telefone "1" -- "1" TipoTelefone
+  Usuario "1" -- "1" Cliente
+  Usuario "1" o-- "N" Notificacao : tem
+  Livro "1" -- "1" Dimensao
+  Livro "1" -- "1" GrupoPrecificacao
+  Livro "1" o-- "N" Autor : tem
+  Livro "1" o-- "N" Categoria : tem
+  Carrinho "1" *-- "N" ItemCarrinho : contem
+  CartaoCompra "N" -- "1" Pedido
+  CartaoCompra "N" -- "1" CartaoCredito
+  CartaoCredito "1" -- "1" Bandeira
+  CartaoCredito "N" -- "1" Cliente
+  Cupom "N" -- "1" TipoCupom
+  Cupom "N" -- "1" Pedido
+  Cupom "N" -- "1" Cliente
+  EnderecoEntrega "1" -- "1" Endereco
+  EnderecoEntrega "1" -- "1" Frete
+  Estoque "1" *-- "N" ItemEstoque : contem
+  Frete "1" -- "1" EnderecoEntrega
+  Item "1" -- "1" Livro
+  ItemCarrinho "N" -- "1" Carrinho
+  ItemEstoque "N" -- "1" CategoriaStatus
+  ItemPedido "N" -- "1" Pedido
+  ItemTroca "N" -- "1" PedidoTroca
+  Pagamento "1" o-- "N" CartaoCompra : usa
+  Pagamento "1" o-- "N" Cupom : usa
+  Pagamento "1" -- "1" Carrinho
+  Pagamento "1" -- "1" EnderecoEntrega
+  Pagamento "1" o-- "1" CartaoCompra : novo
+  Pagamento "1" o-- "1" Cupom : novo
+  Pedido "1" -- "1" Cliente
+  Pedido "1" -- "1" Carrinho
+  Pedido "1" -- "1" EnderecoEntrega
+  Pedido "1" -- "1" PedidoTroca
+  Pedido "1" -- "1" StatusPedido
+  Pedido "1" o-- "N" CartaoCompra : usa
+  Pedido "1" o-- "N" Cupom : usa
+  Pedido "1" *-- "N" ItemPedido : contem
+  PedidoTroca "1" -- "1" Pedido
+  PedidoTroca "1" -- "1" Cupom
+  PedidoTroca "1" *-- "N" ItemTroca : contem

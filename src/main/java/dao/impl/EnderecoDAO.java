@@ -105,7 +105,7 @@ public class EnderecoDAO implements IDAO {
     }
 
     @Override
-    public void excluir(EntidadeDominio entidade) {
+    public void excluirPorId(EntidadeDominio entidade) {
         Endereco endereco = (Endereco) entidade;
         PreparedStatement pst = null;
         StringBuilder sql = new StringBuilder();
@@ -165,7 +165,7 @@ public class EnderecoDAO implements IDAO {
                 controleTransacao = false;
             }
 
-//    		sql.append("SELECT * FROM _enderecos WHERE end_cli_id ="+idCliente+";");
+            // sql.append("SELECT * FROM _enderecos WHERE end_cli_id ="+idCliente+";");
 
             pst = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 

@@ -11,4 +11,12 @@ public enum TipoLogradouro {
     private String descricao;
     private int valor;
 
+    public static TipoLogradouro obterPorDescricao(String descricao) {
+        for (TipoLogradouro tipo : TipoLogradouro.values()) {
+            if (tipo.getDescricao().equalsIgnoreCase(descricao)) {
+                return tipo;
+            }
+        }
+        throw new IllegalArgumentException("Tipo de logradouro inválido: " + descricao);
+    }
 }

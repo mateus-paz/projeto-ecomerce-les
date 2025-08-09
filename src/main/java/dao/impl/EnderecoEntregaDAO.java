@@ -114,7 +114,7 @@ public class EnderecoEntregaDAO implements IDAO {
     }
 
     @Override
-    public void excluir(EntidadeDominio entidade) {
+    public void excluirPorId(EntidadeDominio entidade) {
         EnderecoEntrega endereco = (EnderecoEntrega) entidade;
         StringBuilder sql = new StringBuilder();
         PreparedStatement pst = null;

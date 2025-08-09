@@ -11,4 +11,12 @@ public enum TipoCupom {
     private String descricao;
     private int valor;
 
+    public static TipoCupom obterPorDescricao(String descricao) {
+        for (TipoCupom tipo : TipoCupom.values()) {
+            if (tipo.getDescricao().equalsIgnoreCase(descricao)) {
+                return tipo;
+            }
+        }
+        throw new IllegalArgumentException("Tipo de cupom inválido: " + descricao);
+    }
 }

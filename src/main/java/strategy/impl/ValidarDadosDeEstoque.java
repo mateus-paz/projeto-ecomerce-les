@@ -10,15 +10,15 @@ public class ValidarDadosDeEstoque extends AbstractValidador {
 
         ItemEstoque item = (ItemEstoque) entidade;
         
-        if(isNull(item.getPrecoCusto())) {
+        if(isBlank(item.getPrecoCusto())) {
             sb.append("Para toda entrada em estoque, e obrigatorio informar o preco de custo");
         }
         
-        if(isNull(item.getLivro())){
+        if(isBlank(item.getLivro())){
             sb.append("Para toda entrada em estoque, e obrigatorio informar o livro ");
         }
         
-        if(isNull(item.getQuantidade())) {
+        if(isBlank(item.getQuantidade())) {
             sb.append("Para toda entrada em estoque, e obrigatorio informar a quantidade");
         }
         

@@ -1,0 +1,25 @@
+services:
+  app:
+    image: tomcat:9.0-jdk8-temurin
+    container_name: tomcat-app
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./target/EcomerceLivroLES.war:/usr/local/tomcat/webapps/ROOT.war
+    depends_on:
+      - db
+  db:
+    image: postgres
+    container_name: postgres-db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=ecomerce
+    volumes:
+      - ./docs/create_table.sql:/docker-entrypoint-initdb.d/create_table.sql
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

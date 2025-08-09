@@ -11,104 +11,104 @@ import dominio.venda.Pagamento;
 public class PagamentoDAO implements IDAO {
     private Connection connection = null;
     private boolean controleTransacao = true;
-    
-    public PagamentoDAO(){}
-    
-    public PagamentoDAO(Connection connection){
+
+    public PagamentoDAO() {
+    }
+
+    public PagamentoDAO(Connection connection) {
         this.connection = connection;
     }
-    
+
     @Override
     public void salvar(EntidadeDominio entidade) {
         Pagamento pagamento = (Pagamento) entidade;
-        
+
         try {
-            
-            if(connection == null) {
+
+            if (connection == null) {
                 connection = Conexao.getConnectionPostgres();
-            }else {
+            } else {
                 controleTransacao = false;
             }
-            
-            if(pagamento.getNovoCartao() != null) {
+
+            if (pagamento.getNovoCartao() != null) {
                 CartaoCompraDAO ccDao = new CartaoCompraDAO(connection);
                 ccDao.salvar(pagamento.getNovoCartao());
             }
-            
+
         } catch (SQLException | ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-            
-        } finally{
-            if(controleTransacao)
+
+        } finally {
+            if (controleTransacao)
                 try {
                     connection.close();
-                } catch(SQLException e) {
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
-        
-        
+
     }
 
     @Override
     public void alterar(EntidadeDominio entidade) {
         Pagamento pagamento = (Pagamento) entidade;
-        
+
         try {
-            if(connection == null) {
+            if (connection == null) {
                 connection = Conexao.getConnectionPostgres();
-            }else {
+            } else {
                 controleTransacao = false;
             }
-            
-            if(pagamento.getNovoCartao() != null) {
+
+            if (pagamento.getNovoCartao() != null) {
                 CartaoCompraDAO ccDao = new CartaoCompraDAO(connection);
                 ccDao.alterar(pagamento.getNovoCartao());
             }
-            
+
         } catch (SQLException | ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } finally{
-            if(controleTransacao)
+        } finally {
+            if (controleTransacao)
                 try {
                     connection.close();
-                }catch(SQLException e) {
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
         }
-            
+
     }
 
     @Override
-    public void excluir(EntidadeDominio entidade) {
+    public void excluirPorId(EntidadeDominio entidade) {
         Pagamento pagamento = (Pagamento) entidade;
-        
+
         try {
-            
-            if(connection == null) {
+
+            if (connection == null) {
                 connection = Conexao.getConnectionPostgres();
-            }else {
+            } else {
                 controleTransacao = false;
             }
-        
-            if(pagamento.getNovoCartao() != null) {
+
+            if (pagamento.getNovoCartao() != null) {
                 CartaoCompraDAO ccDao = new CartaoCompraDAO(connection);
-                ccDao.excluir(pagamento.getNovoCartao());
+                ccDao.excluirPorId(pagamento.getNovoCartao());
             }
 
         } catch (SQLException | ClassNotFoundException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } finally{
-            if(controleTransacao)
+        } finally {
+            if (controleTransacao)
                 try {
                     connection.close();
-                }catch(SQLException e) {
+                } catch (SQLException e) {
                     e.printStackTrace();
                 }
-        } 
+        }
     }
 
     @Override

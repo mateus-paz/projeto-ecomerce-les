@@ -11,4 +11,12 @@ public enum GrupoPrecificacao {
     private String descricao;
     private int valor;
 
+    public static GrupoPrecificacao obterPorDescricao(String descricao) {
+        for (GrupoPrecificacao grupo : GrupoPrecificacao.values()) {
+            if (grupo.getDescricao().equalsIgnoreCase(descricao)) {
+                return grupo;
+            }
+        }
+        throw new IllegalArgumentException("Grupo de precificação inválido: " + descricao);
+    }
 }

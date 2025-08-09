@@ -13,4 +13,12 @@ public enum StatusPedido {
     private String descricao;
     private int valor;
 
+    public static StatusPedido obterPorDescricao(String descricao) {
+        for (StatusPedido status : StatusPedido.values()) {
+            if (status.getDescricao().equalsIgnoreCase(descricao)) {
+                return status;
+            }
+        }
+        throw new IllegalArgumentException("Status de pedido inválido: " + descricao);
+    }
 }

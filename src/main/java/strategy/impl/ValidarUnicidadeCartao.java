@@ -23,7 +23,7 @@ public class ValidarUnicidadeCartao extends AbstractValidador {
         
         Cliente cliente = cartao.getCliente();
         
-        if(isNull(cartao.getId())){
+        if(isBlank(cartao.getId())){
             CartaoCreditoDAO cartaoDao = new CartaoCreditoDAO();
             List<EntidadeDominio> cartoes = cartaoDao.consultar(cliente);
             
